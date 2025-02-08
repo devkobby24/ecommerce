@@ -2,6 +2,7 @@ import {
   Button,
   Container,
   Typography,
+  Grid2,
   Grid,
   Card,
   CardContent,
@@ -69,19 +70,19 @@ const Home = () => {
         Find the best products at the best prices!
       </Typography>
 
-      <Grid container justifyContent="center" sx={{ mb: 4 }}>
+      <Grid2 container justifyContent="center" sx={{ mb: 4 }}>
         <Link to="/product/1" style={{ textDecoration: "none" }}>
           <Button variant="contained" color="primary" size="large">
             Shop Now
           </Button>
         </Link>
-      </Grid>
+      </Grid2>
 
       {/* Loading Indicator */}
       {loading ? (
-        <Grid container justifyContent="center">
+        <Grid2 container justifyContent="center">
           <CircularProgress />
-        </Grid>
+        </Grid2>
       ) : (
         <>
           <Typography variant="h4" gutterBottom>
@@ -94,6 +95,7 @@ const Home = () => {
                   <CardMedia
                     component="img"
                     height="200"
+                    width="200"
                     image={product.image}
                     alt={product.name}
                   />
