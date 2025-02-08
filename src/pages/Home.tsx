@@ -88,7 +88,7 @@ const Home = () => {
           <Typography variant="h4" gutterBottom>
             Featured Products
           </Typography>
-          <Grid2 container spacing={3}>
+          <Grid container spacing={3}>
             {products.map((product) => (
               <Grid item xs={12} sm={6} md={4} key={product?.id}>
                 <Card>
@@ -120,7 +120,7 @@ const Home = () => {
                 </Card>
               </Grid>
             ))}
-          </Grid2>
+          </Grid>
         </>
       )}
     </Container>
