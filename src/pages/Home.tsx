@@ -65,7 +65,7 @@ const Home = () => {
   return (
     <Container>
       {/* Hero Section */}
-      <Typography variant="h2" fontWeight="bold" color="gray" gutterBottom>
+      <Typography variant="h2" fontWeight="bold" color="black" gutterBottom>
         Discover the Best Deals Online
       </Typography>
       <Typography
@@ -79,7 +79,7 @@ const Home = () => {
       </Typography>
       <Button
         variant="contained"
-        color="secondary"
+        color="primary"
         size="large"
         sx={{ mt: 3, px: 4, fontSize: "1.2rem" }}
       >
@@ -99,13 +99,14 @@ const Home = () => {
           <Grid container spacing={3}>
             {products.map((product) => (
               <Grid item xs={12} sm={6} md={4} key={product?.id}>
-                <Card>
+                <Card sx={{ padding: '2px' , borderRadius: 2, boxShadow: 5 }}>
                   <CardMedia
                     component="img"
                     height="200"
                     width="200"
                     image={product.image}
                     alt={product.name}
+                    sx={{ objectFit: "contain" }}
                   />
                   <CardContent>
                     <Typography variant="h6">{product.name}</Typography>

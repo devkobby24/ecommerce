@@ -58,12 +58,13 @@ const ProductDetails = () => {
             height="400"
             image={product.image}
             alt={product.title}
+            sx={{ objectFit: "contain" }}
           />
           <CardContent>
             <Typography variant="h4" gutterBottom>
               {product.title}
             </Typography>
-            <Typography variant="h6" color="primary">
+            <Typography variant="h6" color="primary" gutterBottom>
               ${product.price}
             </Typography>
             <Typography variant="body1" paragraph>
