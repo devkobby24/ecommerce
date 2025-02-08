@@ -49,7 +49,7 @@ const Home = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get("https://fakestoreapi.com/products");
+        const response = await axios.get("https://fakestoreapi.com/products?sort=desc'");
         setProducts(response.data);
       } catch (error) {
         console.log("Error fetching products", error);
