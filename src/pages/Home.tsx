@@ -19,27 +19,27 @@ interface Product {
   price: string;
   image: string;
 }
-// Mock product data (for now, we'll fetch real data later)
-const products = [
-  {
-    id: 1,
-    name: "Wireless Headphones",
-    price: "$120",
-    image: "https://source.unsplash.com/300x200/?headphones",
-  },
-  {
-    id: 2,
-    name: "Smartphone",
-    price: "$699",
-    image: "https://source.unsplash.com/300x200/?smartphone",
-  },
-  {
-    id: 3,
-    name: "Gaming Laptop",
-    price: "$1499",
-    image: "https://source.unsplash.com/300x200/?laptop",
-  },
-];
+// Mock product data
+// const products = [
+//   {
+//     id: 1,
+//     name: "Wireless Headphones",
+//     price: "$120",
+//     image: "https://source.unsplash.com/300x200/?headphones",
+//   },
+//   {
+//     id: 2,
+//     name: "Smartphone",
+//     price: "$699",
+//     image: "https://source.unsplash.com/300x200/?smartphone",
+//   },
+//   {
+//     id: 3,
+//     name: "Gaming Laptop",
+//     price: "$1499",
+//     image: "https://source.unsplash.com/300x200/?laptop",
+//   },
+// ];
 
 const Home = () => {
   // Fetch real product data from API
@@ -49,7 +49,9 @@ const Home = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get("https://fakestoreapi.com/products?sort=desc'");
+        const response = await axios.get(
+          "https://fakestoreapi.com/products?sort=desc'"
+        );
         setProducts(response.data);
       } catch (error) {
         console.log("Error fetching products", error);
@@ -63,20 +65,26 @@ const Home = () => {
   return (
     <Container>
       {/* Hero Section */}
-      <Typography variant="h3" align="center" gutterBottom>
-        Welcome to Our Store
+      <Typography variant="h2" fontWeight="bold" color="gray" gutterBottom>
+        Discover the Best Deals Online
       </Typography>
-      <Typography variant="h6" align="center" color="textSecondary" paragraph>
-        Find the best products at the best prices!
+      <Typography
+        color="gray"
+        variant="h6"
+        textAlign={"left"}
+        sx={{ maxWidth: "600px", opacity: 0.9 }}
+      >
+        Explore a wide range of high-quality products at unbeatable prices.
+        Start shopping now!
       </Typography>
-
-      <Grid2 container justifyContent="center" sx={{ mb: 4 }}>
-        <Link to="/product/1" style={{ textDecoration: "none" }}>
-          <Button variant="contained" color="primary" size="large">
-            Shop Now
-          </Button>
-        </Link>
-      </Grid2>
+      <Button
+        variant="contained"
+        color="secondary"
+        size="large"
+        sx={{ mt: 3, px: 4, fontSize: "1.2rem" }}
+      >
+        Shop Now
+      </Button>
 
       {/* Loading Indicator */}
       {loading ? (
