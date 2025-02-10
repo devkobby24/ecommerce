@@ -94,7 +94,7 @@ const Home = () => {
         </Grid2>
       ) : (
         <>
-          <Typography variant="h4" gutterBottom>
+          <Typography variant="h4" color="black" sx={{my:5}} gutterBottom>
             Featured Products
           </Typography>
           <Grid container spacing={3}>
