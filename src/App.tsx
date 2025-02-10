@@ -1,9 +1,10 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import ProductDetails from "./pages/ProductDetails";
-import Header from "./ui/Header";
-import Footer from "./ui/Footer";
+import Header from "./components/ui/Header";
+import Footer from "./components/ui/Footer";
 import { Container } from "@mui/material";
+import ScrollToTop from "./components/scrollToTop";
 
 const App = () => {
   return (
@@ -14,7 +15,9 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/product/:id" element={<ProductDetails />} />
         </Routes>
+        <ScrollToTop />
       </Container>
+      
       <Footer />
     </Router>
   );

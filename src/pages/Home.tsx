@@ -66,7 +66,7 @@ const Home = () => {
   return (
     <Container>
       {/* Hero Section */}
-      <Typography variant="h3" fontWeight="bold" color="black" gutterBottom>
+      <Typography variant="h3" fontWeight="bold" color="black" sx={{ fontSize: {sm:14, md: 60, lg: 68}}} gutterBottom>
         Discover the Best Deals Online
       </Typography>
       <Typography
