@@ -63,11 +63,10 @@ const Home = () => {
     fetchProducts();
   }, []);
 
-
   return (
     <Container>
       {/* Hero Section */}
-      <Typography variant="h2" fontWeight="bold" color="black" gutterBottom>
+      <Typography variant="h3" fontWeight="bold" color="black" gutterBottom>
         Discover the Best Deals Online
       </Typography>
       <Typography
@@ -101,7 +100,7 @@ const Home = () => {
           <Grid container spacing={3}>
             {products.map((product) => (
               <Grid item xs={12} sm={6} md={4} key={product?.id}>
-                <Card sx={{ padding: '2px' , borderRadius: 2, boxShadow: 5, maxHeight: 300 }}>
+                <Card sx={{ padding: "2px", borderRadius: 2, boxShadow: 5 }}>
                   <CardMedia
                     component="img"
                     height="200"
@@ -111,7 +110,21 @@ const Home = () => {
                     sx={{ objectFit: "contain" }}
                   />
                   <CardContent>
-                    <Typography variant="h6" sx={{ fontWeight: 'semibold', fontSize: 16, maxLines: 2}}>{product.title}</Typography>
+                    <Typography
+                      variant="h6"
+                      sx={{
+                        fontWeight: "bold",
+                        fontSize: { sm: 12, md: 16, lg: 18 },
+                        display: "-webkit-box",
+                        WebkitLineClamp: 1,
+                        WebkitBoxOrient: "vertical",
+                        overflow: "hidden",
+                        textOverflow: "ellipsis",
+                      }}
+                      gutterBottom
+                    >
+                      {product.title}
+                    </Typography>
                     <Typography color="textSecondary">
                       ${product.price}
                     </Typography>
