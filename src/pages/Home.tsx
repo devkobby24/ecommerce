@@ -62,6 +62,8 @@ const Home = () => {
 
     fetchProducts();
   }, []);
+
+
   return (
     <Container>
       {/* Hero Section */}
@@ -99,7 +101,7 @@ const Home = () => {
           <Grid container spacing={3}>
             {products.map((product) => (
               <Grid item xs={12} sm={6} md={4} key={product?.id}>
-                <Card sx={{ padding: '2px' , borderRadius: 2, boxShadow: 5 }}>
+                <Card sx={{ padding: '2px' , borderRadius: 2, boxShadow: 5, maxHeight: 300 }}>
                   <CardMedia
                     component="img"
                     height="200"
