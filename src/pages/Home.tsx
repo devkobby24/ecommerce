@@ -15,7 +15,7 @@ import { useEffect, useState } from "react";
 
 interface Product {
   id: number;
-  name: string;
+  title: string;
   price: string;
   image: string;
 }
@@ -23,19 +23,19 @@ interface Product {
 // const products = [
 //   {
 //     id: 1,
-//     name: "Wireless Headphones",
+//     title: "Wireless Headphones",
 //     price: "$120",
 //     image: "https://source.unsplash.com/300x200/?headphones",
 //   },
 //   {
 //     id: 2,
-//     name: "Smartphone",
+//     title: "Smartphone",
 //     price: "$699",
 //     image: "https://source.unsplash.com/300x200/?smartphone",
 //   },
 //   {
 //     id: 3,
-//     name: "Gaming Laptop",
+//     title: "Gaming Laptop",
 //     price: "$1499",
 //     image: "https://source.unsplash.com/300x200/?laptop",
 //   },
@@ -105,11 +105,11 @@ const Home = () => {
                     height="200"
                     width="200"
                     image={product.image}
-                    alt={product.name}
+                    alt={product.title}
                     sx={{ objectFit: "contain" }}
                   />
                   <CardContent>
-                    <Typography variant="h6">{product.name}</Typography>
+                    <Typography variant="h6" sx={{ fontWeight: 'semibold', fontSize: 16, maxLines: 2}}>{product.title}</Typography>
                     <Typography color="textSecondary">
                       ${product.price}
                     </Typography>
