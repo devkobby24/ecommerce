@@ -1,5 +1,6 @@
 import {
   Button,
+  Box,
   Container,
   Typography,
   Grid2,
@@ -66,7 +67,13 @@ const Home = () => {
   return (
     <Container>
       {/* Hero Section */}
-      <Typography variant="h3" fontWeight="bold" color="black" sx={{ fontSize: {sm:14, md: 60, lg: 68}}} gutterBottom>
+      <Typography
+        variant="h3"
+        fontWeight="bold"
+        color="black"
+        sx={{ fontSize: { sm: 14, md: 60, lg: 68 } }}
+        gutterBottom
+      >
         Discover the Best Deals Online
       </Typography>
       <Typography
@@ -82,7 +89,7 @@ const Home = () => {
         variant="contained"
         color="primary"
         size="large"
-        sx={{ mt: 3, px: 4, fontSize: "1.2rem" }}
+        sx={{ mt: 3, px: 4, fontSize: "1.2rem", borderRadius: 7 }}
       >
         Shop Now
       </Button>
@@ -94,12 +101,52 @@ const Home = () => {
         </Grid2>
       ) : (
         <>
-          <Typography variant="h4" color="black" sx={{my:5}} gutterBottom>
-            Featured Products
-          </Typography>
+          <Container sx={{ py: 4 }}>
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                flexWrap: "wrap", // Prevents layout breaking on smaller screens
+              }}
+            >
+              {/* Title */}
+              <Typography
+                variant="h4"
+                color="black"
+                sx={{ my: 2 }}
+                gutterBottom
+              >
+                Featured Products
+              </Typography>
+
+              {/* Buttons */}
+              <Box
+                sx={{
+                  display: "flex",
+                  gap: 2, // Adds spacing between buttons
+                }}
+              >
+                <Button
+                  variant="contained"
+                  color="primary"
+                  sx={{ borderRadius: 5, boxShadow: 3 }}
+                >
+                  Sort
+                </Button>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  sx={{ borderRadius: 5, boxShadow: 3 }}
+                >
+                  Filter
+                </Button>
+              </Box>
+            </Box>
+          </Container>
           <Grid container spacing={3}>
             {products.map((product) => (
-              <Grid item xs={12} sm={6} md={4} key={product?.id}>
+              <Grid item xs={12} sm={12} md={4} key={product?.id}>
                 <Card sx={{ padding: "2px", borderRadius: 2, boxShadow: 5 }}>
                   <CardMedia
                     component="img"
@@ -135,7 +182,7 @@ const Home = () => {
                       <Button
                         variant="contained"
                         color="primary"
-                        sx={{ mt: 1 }}
+                        sx={{ mt: 1, borderRadius: 5 }}
                       >
                         View Details
                       </Button>
