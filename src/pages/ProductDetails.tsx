@@ -60,7 +60,7 @@ const ProductDetails = () => {
             alt={product.title}
             sx={{ objectFit: "contain" }}
           />
-          <CardContent>
+          <CardContent> 
             <Typography variant="h4" gutterBottom>
               {product.title}
             </Typography>
