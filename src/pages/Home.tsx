@@ -1,5 +1,6 @@
 import {
   Button,
+  Box,
   Container,
   Typography,
   Grid2,
@@ -15,7 +16,7 @@ import { useEffect, useState } from "react";
 
 interface Product {
   id: number;
-  name: string;
+  title: string;
   price: string;
   image: string;
 }
@@ -23,19 +24,19 @@ interface Product {
 // const products = [
 //   {
 //     id: 1,
-//     name: "Wireless Headphones",
+//     title: "Wireless Headphones",
 //     price: "$120",
 //     image: "https://source.unsplash.com/300x200/?headphones",
 //   },
 //   {
 //     id: 2,
-//     name: "Smartphone",
+//     title: "Smartphone",
 //     price: "$699",
 //     image: "https://source.unsplash.com/300x200/?smartphone",
 //   },
 //   {
 //     id: 3,
-//     name: "Gaming Laptop",
+//     title: "Gaming Laptop",
 //     price: "$1499",
 //     image: "https://source.unsplash.com/300x200/?laptop",
 //   },
@@ -62,10 +63,17 @@ const Home = () => {
 
     fetchProducts();
   }, []);
+
   return (
     <Container>
       {/* Hero Section */}
-      <Typography variant="h2" fontWeight="bold" color="black" gutterBottom>
+      <Typography
+        variant="h3"
+        fontWeight="bold"
+        color="black"
+        sx={{ fontSize: { sm: 14, md: 60, lg: 68 } }}
+        gutterBottom
+      >
         Discover the Best Deals Online
       </Typography>
       <Typography
@@ -81,7 +89,7 @@ const Home = () => {
         variant="contained"
         color="primary"
         size="large"
-        sx={{ mt: 3, px: 4, fontSize: "1.2rem" }}
+        sx={{ mt: 3, px: 4, fontSize: "1.2rem", borderRadius: 7 }}
       >
         Shop Now
       </Button>
@@ -93,23 +101,77 @@ const Home = () => {
         </Grid2>
       ) : (
         <>
-          <Typography variant="h4" gutterBottom>
-            Featured Products
-          </Typography>
+          <Container sx={{ py: 4 }}>
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                flexWrap: "wrap", // Prevents layout breaking on smaller screens
+              }}
+            >
+              {/* Title */}
+              <Typography
+                variant="h4"
+                color="black"
+                sx={{ my: 2 }}
+                gutterBottom
+              >
+                Featured Products
+              </Typography>
+
+              {/* Buttons */}
+              <Box
+                sx={{
+                  display: "flex",
+                  gap: 2, // Adds spacing between buttons
+                }}
+              >
+                <Button
+                  variant="contained"
+                  color="primary"
+                  sx={{ borderRadius: 5, boxShadow: 3 }}
+                >
+                  Sort
+                </Button>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  sx={{ borderRadius: 5, boxShadow: 3 }}
+                >
+                  Filter
+                </Button>
+              </Box>
+            </Box>
+          </Container>
           <Grid container spacing={3}>
             {products.map((product) => (
-              <Grid item xs={12} sm={6} md={4} key={product?.id}>
-                <Card sx={{ padding: '2px' , borderRadius: 2, boxShadow: 5 }}>
+              <Grid item xs={12} sm={12} md={4} key={product?.id}>
+                <Card sx={{ padding: "2px", borderRadius: 2, boxShadow: 5 }}>
                   <CardMedia
                     component="img"
                     height="200"
                     width="200"
                     image={product.image}
-                    alt={product.name}
+                    alt={product.title}
                     sx={{ objectFit: "contain" }}
                   />
                   <CardContent>
-                    <Typography variant="h6">{product.name}</Typography>
+                    <Typography
+                      variant="h6"
+                      sx={{
+                        fontWeight: "bold",
+                        fontSize: { sm: 12, md: 16, lg: 18 },
+                        display: "-webkit-box",
+                        WebkitLineClamp: 1,
+                        WebkitBoxOrient: "vertical",
+                        overflow: "hidden",
+                        textOverflow: "ellipsis",
+                      }}
+                      gutterBottom
+                    >
+                      {product.title}
+                    </Typography>
                     <Typography color="textSecondary">
                       ${product.price}
                     </Typography>
@@ -120,7 +182,7 @@ const Home = () => {
                       <Button
                         variant="contained"
                         color="primary"
-                        sx={{ mt: 1 }}
+                        sx={{ mt: 1, borderRadius: 5 }}
                       >
                         View Details
                       </Button>
