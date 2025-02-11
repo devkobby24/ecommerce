@@ -1,17 +1,17 @@
 describe('My First Test', () => {
-  it('Gets, types and asserts', () => {
-    cy.visit('https://example.cypress.io')
+  it('Gets, types, and asserts', () => {
+    cy.visit('http://localhost:5173/')
 
-    cy.contains('type').click()
+    // Ensure the "View Details" button exists and click it
+    cy.contains(/view details/i).click()
 
-    // Should be on a new URL which
-    // includes '/commands/actions'
-    cy.url().should('include', '/commands/actions')
+    // Verify that the URL now includes '/product/'
+    cy.url().should('include', '/product/')
 
-    // Get an input, type into it
-    cy.get('.action-email').type('fake@email.com')
+    // Ensure the "Back to Home" button exists and click it
+    cy.contains(/back to home/i).click()
 
-    //  Verify that the value has been updated
-    cy.get('.action-email').should('have.value', 'fake@email.com')
+    // Verify the URL is back to the homepage
+    cy.url().should('eq', 'http://localhost:5173/')
   })
 })
