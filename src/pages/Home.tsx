@@ -198,7 +198,10 @@ const Home = () => {
                       </Typography>
                       <Typography
                         color="black"
-                        sx={{ fontSize: { xs: 20, md: 16 }, fontWeight: "bold" }}
+                        sx={{
+                          fontSize: { xs: 20, md: 16 },
+                          fontWeight: "bold",
+                        }}
                       >
                         ${product.price}
                       </Typography>
