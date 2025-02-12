@@ -192,13 +192,13 @@ const Home = () => {
                       <Typography
                         variant="body2"
                         color="textSecondary"
-                        sx={{ fontSize: { xs: 20 } }}
+                        sx={{ fontSize: { xs: 20, md: 16 } }}
                       >
                         {product.category}
                       </Typography>
                       <Typography
                         color="black"
-                        sx={{ fontSize: { xs: 20 }, fontWeight: "bold" }}
+                        sx={{ fontSize: { xs: 20, md: 16 }, fontWeight: "bold" }}
                       >
                         ${product.price}
                       </Typography>
