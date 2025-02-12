@@ -80,7 +80,14 @@ const Home = () => {
         color="gray"
         variant="h6"
         textAlign={"left"}
-        sx={{ maxWidth: "600px", opacity: 0.9,textAlign: { xs: "center", md: "center" }, display: 'flex', margin: 'auto', my: 3 }}
+        sx={{
+          maxWidth: "600px",
+          opacity: 0.9,
+          textAlign: { xs: "center", md: "center" },
+          display: "flex",
+          margin: "auto",
+          my: 3,
+        }}
         gutterBottom
       >
         Explore a wide range of high-quality products at unbeatable prices.
@@ -90,7 +97,14 @@ const Home = () => {
         variant="contained"
         color="primary"
         size="large"
-        sx={{ mt: 6, px: 4, fontSize: "1.2rem", borderRadius: 7, display: {xs:'flex' , md:'block'}, margin: 'auto' }}
+        sx={{
+          mt: 6,
+          px: 4,
+          fontSize: "1.2rem",
+          borderRadius: 7,
+          display: { xs: "flex", md: "block" },
+          margin: "auto",
+        }}
       >
         Shop Now
       </Button>
@@ -115,6 +129,7 @@ const Home = () => {
               <Typography
                 variant="h4"
                 color="black"
+                fontWeight={'bold'}
                 sx={{ my: 2, textAlign: "left", ml: -2 }}
                 gutterBottom
               >
@@ -167,24 +182,26 @@ const Home = () => {
                     >
                       {product.title}
                     </Typography>
-                    <Typography color="textSecondary">
-                      ${product.price}
-                    </Typography>
-                    <Typography variant="body2" color="textSecondary">
-                      {product.category}
-                    </Typography>
-                    <Link
-                      to={`/product/${product.id}`}
-                      style={{ textDecoration: "none" }}
-                    >
-                      <Button
-                        variant="contained"
-                        color="primary"
-                        sx={{ mt: 1, borderRadius: 5 }}
+                    <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "end", flexDirection: "column", gap: 1 }}>
+                      <Typography color="textSecondary">
+                        ${product.price}
+                      </Typography>
+                      <Typography variant="body2" color="textSecondary">
+                        {product.category}
+                      </Typography>
+                      <Link
+                        to={`/product/${product.id}`}
+                        style={{ textDecoration: "none" }}
                       >
-                        View Details
-                      </Button>
-                    </Link>
+                        <Button
+                          variant="contained"
+                          color="primary"
+                          sx={{ mt: 1, borderRadius: 5 }}
+                        >
+                          View Details
+                        </Button>
+                      </Link>
+                    </Box>
                   </CardContent>
                 </Card>
               </Grid>
