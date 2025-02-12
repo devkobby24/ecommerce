@@ -129,7 +129,7 @@ const Home = () => {
               <Typography
                 variant="h4"
                 color="black"
-                fontWeight={'bold'}
+                fontWeight={"bold"}
                 sx={{ my: 2, textAlign: "left", ml: -2 }}
                 gutterBottom
               >
@@ -158,13 +158,13 @@ const Home = () => {
           <Grid container spacing={3}>
             {products.map((product) => (
               <Grid item xs={12} sm={6} md={4} key={product.id}>
-                <Card sx={{ padding: "2px", borderRadius: 2, boxShadow: 5 }}>
+                <Card sx={{ borderRadius: 2, boxShadow: 5 }}>
                   <CardMedia
                     component="img"
                     height="200"
                     image={product.image}
                     alt={product.title}
-                    sx={{ objectFit: "contain" }}
+                    sx={{ objectFit: "contain", mt: 2 }}
                   />
                   <CardContent>
                     <Typography
@@ -182,26 +182,50 @@ const Home = () => {
                     >
                       {product.title}
                     </Typography>
-                    <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "end", flexDirection: "column", gap: 1 }}>
-                      <Typography color="textSecondary">
-                        ${product.price}
-                      </Typography>
-                      <Typography variant="body2" color="textSecondary">
+
+                    <Box
+                      display={"flex"}
+                      flexDirection={"row"}
+                      alignItems={"center"}
+                      justifyContent={"space-between"}
+                    >
+                      <Typography
+                        variant="body2"
+                        color="textSecondary"
+                        sx={{ fontSize: { xs: 20 } }}
+                      >
                         {product.category}
                       </Typography>
-                      <Link
-                        to={`/product/${product.id}`}
-                        style={{ textDecoration: "none" }}
+                      <Typography
+                        color="black"
+                        sx={{ fontSize: { xs: 20 }, fontWeight: "bold" }}
                       >
-                        <Button
-                          variant="contained"
-                          color="primary"
-                          sx={{ mt: 1, borderRadius: 5 }}
-                        >
-                          View Details
-                        </Button>
-                      </Link>
+                        ${product.price}
+                      </Typography>
                     </Box>
+
+                    <Box
+                      sx={{
+                        width: { xs: "400px", md: "250px", lg: "400px" },
+                        height: "2px",
+                        backgroundColor: "lightblue",
+                        my: 2,
+                        ml: -2,
+                      }}
+                    />
+
+                    <Link
+                      to={`/product/${product.id}`}
+                      style={{ textDecoration: "none" }}
+                    >
+                      <Button
+                        variant="contained"
+                        color="primary"
+                        sx={{ mt: 1, borderRadius: 5 }}
+                      >
+                        View Details
+                      </Button>
+                    </Link>
                   </CardContent>
                 </Card>
               </Grid>
