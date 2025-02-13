@@ -28,6 +28,7 @@ interface Product {
 const Home = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
+  const [category, setCategory] = useState<string>(""); // Track category selection
   const [sortOption, setSortOption] = useState<string>(""); // Track sorting selection
 
   useEffect(() => {
@@ -60,6 +61,16 @@ const Home = () => {
 
     setProducts(sortedProducts);
   };
+
+  // Filtering logic
+  const handleFilter = (category: string) => {
+    setCategory(category);
+  };
+
+  const filteredProducts =
+    category === ""
+      ? products
+      : products.filter((product) => product.category === category);
 
   return (
     <Container>
@@ -152,11 +163,26 @@ const Home = () => {
                   <MenuItem value="category">Category</MenuItem>
                 </Select>
               </FormControl>
+
+              {/* Filtering Dropdown */}
+              <FormControl sx={{ minWidth: 150 }}>
+                <InputLabel>Filter by Category</InputLabel>
+                <Select
+                  value={category}
+                  onChange={(e) => handleFilter(e.target.value)}
+                >
+                  <MenuItem value="">All</MenuItem>
+                  <MenuItem value="electronics">Electronics</MenuItem>
+                  <MenuItem value="jewelery">Jewelry</MenuItem>
+                  <MenuItem value="men's clothing">Men's Clothing</MenuItem>
+                  <MenuItem value="women's clothing">Women's Clothing</MenuItem>
+                </Select>
+              </FormControl>
             </Box>
           </Container>
 
           <Grid container spacing={3}>
-            {products.map((product) => (
+            {filteredProducts.map((product) => (
               <Grid item xs={12} sm={6} md={4} key={product.id}>
                 <Card sx={{ borderRadius: 2, boxShadow: 5 }}>
                   <CardMedia
