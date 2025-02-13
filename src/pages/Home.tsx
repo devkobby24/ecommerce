@@ -141,43 +141,49 @@ const Home = () => {
                 variant="h4"
                 color="black"
                 fontWeight={"bold"}
-                sx={{ my: 2, textAlign: "left", ml: -2 }}
+                sx={{ my: 2, textAlign: "left", ml: -3 }}
                 gutterBottom
               >
                 Featured Products
               </Typography>
 
-              {/* Sorting Dropdown */}
-              <FormControl sx={{ minWidth: 150, ml: { xs: -2, sm: -2 } }}>
-                <InputLabel sx={{ mb: 5, fontSize: 16 }} variant="filled">
-                  Sort By
-                </InputLabel>
-                <Select
-                  value={sortOption}
-                  onChange={(e) => handleSort(e.target.value)}
-                  aria-placeholder="Sort By"
-                  displayEmpty
-                >
-                  <MenuItem value="price-asc">Price: Low to High</MenuItem>
-                  <MenuItem value="price-desc">Price: High to Low</MenuItem>
-                  <MenuItem value="category">Category</MenuItem>
-                </Select>
-              </FormControl>
+              <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
+                {/* Sorting Dropdown */}
+                <FormControl sx={{ minWidth: 150, ml: { xs: -2, sm: -2 } }}>
+                  <InputLabel sx={{ mb: 5, fontSize: 16 }} variant="filled">
+                    Sort By
+                  </InputLabel>
+                  <Select
+                    value={sortOption}
+                    onChange={(e) => handleSort(e.target.value)}
+                    aria-placeholder="Sort By"
+                    displayEmpty
+                  >
+                    <MenuItem value="price-asc">Price: Low to High</MenuItem>
+                    <MenuItem value="price-desc">Price: High to Low</MenuItem>
+                    <MenuItem value="category">Category</MenuItem>
+                  </Select>
+                </FormControl>
 
-              {/* Filtering Dropdown */}
-              <FormControl sx={{ minWidth: 150 }}>
-                <InputLabel>Filter by Category</InputLabel>
-                <Select
-                  value={category}
-                  onChange={(e) => handleFilter(e.target.value)}
-                >
-                  <MenuItem value="">All</MenuItem>
-                  <MenuItem value="electronics">Electronics</MenuItem>
-                  <MenuItem value="jewelery">Jewelry</MenuItem>
-                  <MenuItem value="men's clothing">Men's Clothing</MenuItem>
-                  <MenuItem value="women's clothing">Women's Clothing</MenuItem>
-                </Select>
-              </FormControl>
+                {/* Filtering Dropdown */}
+                <FormControl sx={{ minWidth: 150,  mr: { xs: -3, sm: -3 } }}>
+                  <InputLabel sx={{ mb: 5, fontSize: 16 }} variant="filled">
+                    Filter by Category
+                  </InputLabel>
+                  <Select
+                    value={category}
+                    onChange={(e) => handleFilter(e.target.value)}
+                  >
+                    <MenuItem value="">All</MenuItem>
+                    <MenuItem value="electronics">Electronics</MenuItem>
+                    <MenuItem value="jewelery">Jewelry</MenuItem>
+                    <MenuItem value="men's clothing">Men's Clothing</MenuItem>
+                    <MenuItem value="women's clothing">
+                      Women's Clothing
+                    </MenuItem>
+                  </Select>
+                </FormControl>
+              </Box>
             </Box>
           </Container>
 
