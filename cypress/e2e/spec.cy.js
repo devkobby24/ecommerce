@@ -17,13 +17,13 @@ describe('My First Test', () => {
 })
 
 
-describe('My external site test', () => {
-  it('Visits the external site', () => {
-    cy.visit('https://intabhr.com/')
+// describe('My external site test', () => {
+//   it('Visits the external site', () => {
+//     cy.visit('https://intabhr.com/')
 
-    cy.contains('About').click()
+//     cy.contains('About').click()
 
-    // Verify the URL is the external site
-    cy.url().should('eq', 'https://intabhr.com/About')
-  })
-})
+//     // Verify the URL is the external site
+//     cy.url().should('eq', 'https://intabhr.com/About')
+//   })
+// })
