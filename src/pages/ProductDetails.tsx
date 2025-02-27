@@ -12,7 +12,7 @@ import {
   Grid,
 } from "@mui/material";
 
-// Define the Product Type
+// Defining the Product Type
 interface Product {
   id: number;
   title: string;
