@@ -8,7 +8,6 @@ import {
   CardContent,
   CardMedia,
   Typography,
-  IconButton,
   Tooltip,
   Chip,
   Rating,
@@ -42,33 +41,33 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 
   return (
     <>
-      <Card 
-        sx={{ 
-          height: '100%',
-          display: 'flex',
-          flexDirection: 'column',
-          borderRadius: 3, 
+      <Card
+        sx={{
+          height: "100%",
+          display: "flex",
+          flexDirection: "column",
+          borderRadius: 3,
           boxShadow: 3,
-          transition: 'all 0.3s ease-in-out',
-          '&:hover': {
+          transition: "all 0.3s ease-in-out",
+          "&:hover": {
             boxShadow: 8,
-            transform: 'translateY(-4px)',
-          }
+            transform: "translateY(-4px)",
+          },
         }}
       >
-        <Box sx={{ position: 'relative', overflow: 'hidden' }}>
+        <Box sx={{ position: "relative", overflow: "hidden" }}>
           <CardMedia
             component="img"
             height="220"
             image={product.image}
             alt={product.title}
-            sx={{ 
-              objectFit: "contain", 
+            sx={{
+              objectFit: "contain",
               p: 2,
-              transition: 'transform 0.3s ease-in-out',
-              '&:hover': {
-                transform: 'scale(1.05)',
-              }
+              transition: "transform 0.3s ease-in-out",
+              "&:hover": {
+                transform: "scale(1.05)",
+              },
             }}
           />
           {product.rating && product.rating.rate >= 4.5 && (
@@ -78,10 +77,10 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
               color="warning"
               size="small"
               sx={{
-                position: 'absolute',
+                position: "absolute",
                 top: 8,
                 right: 8,
-                fontWeight: 'bold',
+                fontWeight: "bold",
               }}
             />
           )}
@@ -105,16 +104,20 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             {product.title}
           </Typography>
 
-          <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
+          <Box sx={{ display: "flex", alignItems: "center", mb: 1 }}>
             {product.rating && (
               <>
-                <Rating 
-                  value={product.rating.rate} 
-                  precision={0.1} 
-                  size="small" 
-                  readOnly 
+                <Rating
+                  value={product.rating.rate}
+                  precision={0.1}
+                  size="small"
+                  readOnly
                 />
-                <Typography variant="body2" color="textSecondary" sx={{ ml: 1 }}>
+                <Typography
+                  variant="body2"
+                  color="textSecondary"
+                  sx={{ ml: 1 }}
+                >
                   ({product.rating.count})
                 </Typography>
               </>
@@ -132,9 +135,9 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             <Typography
               variant="body2"
               color="textSecondary"
-              sx={{ 
+              sx={{
                 fontSize: { xs: 12, sm: 14 },
-                textTransform: 'capitalize',
+                textTransform: "capitalize",
               }}
             >
               {product.category}
@@ -153,39 +156,40 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         </CardContent>
 
         <CardActions sx={{ p: 2, pt: 0 }}>
-          <Box sx={{ display: 'flex', gap: 1, width: '100%' }}>
+          <Box sx={{ display: "flex", gap: 1, width: "100%" }}>
             <Button
               variant="contained"
               color="primary"
               onClick={handleAddToCart}
               startIcon={<AddShoppingCartIcon />}
-              sx={{ 
+              sx={{
                 flexGrow: 1,
                 borderRadius: 2,
-                textTransform: 'none',
-                fontWeight: 'bold',
+                textTransform: "none",
+                fontWeight: "bold",
               }}
               size="small"
             >
               Add to Cart
             </Button>
-            
+
             <Tooltip title="View Details">
-              <IconButton
+              <Button
                 component={Link}
                 to={`/product/${product.id}`}
                 color="primary"
-                sx={{ 
-                  border: 1, 
-                  borderColor: 'primary.main',
-                  '&:hover': {
-                    backgroundColor: 'primary.main',
-                    color: 'white',
-                  }
+                startIcon={<VisibilityIcon />}
+                sx={{
+                  flexGrow: 1,
+                  borderRadius: 2,
+                  textTransform: "none",
+                  fontWeight: "bold",
+                  border: "1px solid",
                 }}
+                size="small"
               >
-                <VisibilityIcon />
-              </IconButton>
+                <Typography>View Details</Typography>
+              </Button>
             </Tooltip>
           </Box>
         </CardActions>
@@ -195,9 +199,13 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         open={showSnackbar}
         autoHideDuration={3000}
         onClose={handleCloseSnackbar}
-        anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+        anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
       >
-        <Alert onClose={handleCloseSnackbar} severity="success" variant="filled">
+        <Alert
+          onClose={handleCloseSnackbar}
+          severity="success"
+          variant="filled"
+        >
           Added to cart successfully!
         </Alert>
       </Snackbar>

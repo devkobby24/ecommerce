@@ -10,7 +10,6 @@ import {
   Box,
   Chip,
   Rating,
-  IconButton,
   Breadcrumbs,
   Link,
   Alert,
@@ -32,7 +31,7 @@ const ProductDetails: React.FC = () => {
   const navigate = useNavigate();
   const { addToCart } = useCart();
   const [showSnackbar, setShowSnackbar] = useState(false);
-  
+
   const { data: product, isLoading, error, isError } = useProduct(id);
 
   const handleAddToCart = () => {
@@ -48,7 +47,7 @@ const ProductDetails: React.FC = () => {
 
   if (isLoading) {
     return (
-      <Container sx={{ display: 'flex', justifyContent: 'center', py: 8 }}>
+      <Container sx={{ display: "flex", justifyContent: "center", py: 8 }}>
         <CircularProgress size={60} />
       </Container>
     );
@@ -57,13 +56,11 @@ const ProductDetails: React.FC = () => {
   if (isError || !product) {
     return (
       <Container sx={{ py: 4 }}>
-        <Alert severity="error">
-          {error?.message || 'Product not found'}
-        </Alert>
+        <Alert severity="error">{error?.message || "Product not found"}</Alert>
       </Container>
     );
   }
-        
+
   return (
     <Container maxWidth="lg" sx={{ py: 4 }}>
       {/* Breadcrumbs */}
@@ -71,13 +68,13 @@ const ProductDetails: React.FC = () => {
         <Link
           component="button"
           variant="body2"
-          onClick={() => navigate('/')}
-          sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}
+          onClick={() => navigate("/")}
+          sx={{ display: "flex", alignItems: "center", gap: 0.5 }}
         >
           <HomeIcon fontSize="small" />
           Home
         </Link>
-        <Typography color="textPrimary" sx={{ textTransform: 'capitalize' }}>
+        <Typography color="textPrimary" sx={{ textTransform: "capitalize" }}>
           {product.category}
         </Typography>
         <Typography color="textSecondary" noWrap sx={{ maxWidth: 200 }}>
@@ -87,12 +84,16 @@ const ProductDetails: React.FC = () => {
 
       {/* Back Button */}
       <Box sx={{ mb: 3 }}>
-        <IconButton onClick={() => navigate(-1)} sx={{ mr: 1 }}>
-          <ArrowBackIcon />
-        </IconButton>
-        <Typography variant="body2" component="span" color="textSecondary">
-          Back to products
-        </Typography>
+        <Button
+          onClick={() => navigate(-1)}
+          sx={{ mr: 1 }}
+          size="small"
+          startIcon={<ArrowBackIcon color="action" />}
+        >
+          <Typography variant="body2" component="span" color="textSecondary">
+            Back to Home
+          </Typography>
+        </Button>
       </Box>
 
       <Grid container spacing={4}>
@@ -104,9 +105,9 @@ const ProductDetails: React.FC = () => {
               image={product.image}
               alt={product.title}
               sx={{
-                width: '100%',
+                width: "100%",
                 height: { xs: 300, md: 400 },
-                objectFit: 'contain',
+                objectFit: "contain",
                 borderRadius: 2,
               }}
             />
@@ -115,25 +116,39 @@ const ProductDetails: React.FC = () => {
 
         {/* Product Details */}
         <Grid item xs={12} md={6}>
-          <Box sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
+          <Box
+            sx={{ height: "100%", display: "flex", flexDirection: "column" }}
+          >
             {/* Category Chip */}
             <Chip
               label={product.category}
               color="primary"
               variant="outlined"
-              sx={{ alignSelf: 'flex-start', mb: 2, textTransform: 'capitalize' }}
+              sx={{
+                alignSelf: "flex-start",
+                mb: 2,
+                textTransform: "capitalize",
+              }}
             />
 
             {/* Title */}
-            <Typography variant="h4" component="h1" gutterBottom sx={{ fontWeight: 'bold' }}>
+            <Typography
+              variant="h4"
+              component="h1"
+              gutterBottom
+              sx={{ fontWeight: "bold" }}
+            >
               {product.title}
             </Typography>
 
             {/* Rating */}
             {product.rating && (
-              <Box sx={{ display: 'flex', alignItems: 'center', mb: 3 }}>
+              <Box sx={{ display: "flex", alignItems: "center", mb: 3 }}>
                 <Rating value={product.rating.rate} precision={0.1} readOnly />
-                <Typography variant="body2" sx={{ ml: 1, color: 'text.secondary' }}>
+                <Typography
+                  variant="body2"
+                  sx={{ ml: 1, color: "text.secondary" }}
+                >
                   {product.rating.rate}/5 ({product.rating.count} reviews)
                 </Typography>
                 {product.rating.rate >= 4.5 && (
@@ -152,7 +167,7 @@ const ProductDetails: React.FC = () => {
             <Typography
               variant="h3"
               color="primary"
-              sx={{ fontWeight: 'bold', mb: 3 }}
+              sx={{ fontWeight: "bold", mb: 3 }}
             >
               ${product.price.toFixed(2)}
             </Typography>
@@ -160,7 +175,7 @@ const ProductDetails: React.FC = () => {
             <Divider sx={{ my: 2 }} />
 
             {/* Description */}
-            <Typography variant="h6" gutterBottom sx={{ fontWeight: 'medium' }}>
+            <Typography variant="h6" gutterBottom sx={{ fontWeight: "medium" }}>
               Description
             </Typography>
             <Typography
@@ -168,7 +183,7 @@ const ProductDetails: React.FC = () => {
               sx={{
                 mb: 4,
                 lineHeight: 1.7,
-                color: 'text.secondary',
+                color: "text.secondary",
                 flexGrow: 1,
               }}
             >
@@ -183,10 +198,10 @@ const ProductDetails: React.FC = () => {
               onClick={handleAddToCart}
               sx={{
                 py: 1.5,
-                fontSize: '1.1rem',
-                fontWeight: 'bold',
+                fontSize: "1.1rem",
+                fontWeight: "bold",
                 borderRadius: 3,
-                textTransform: 'none',
+                textTransform: "none",
               }}
               fullWidth
             >
@@ -194,11 +209,15 @@ const ProductDetails: React.FC = () => {
             </Button>
 
             {/* Additional Info */}
-            <Paper elevation={1} sx={{ p: 2, mt: 3, backgroundColor: 'grey.50' }}>
+            <Paper
+              elevation={1}
+              sx={{ p: 2, mt: 3, backgroundColor: "grey.50" }}
+            >
               <Typography variant="body2" color="text.secondary">
-                • Free shipping on orders over $50<br />
-                • 30-day return policy<br />
-                • Secure payment processing
+                • Free shipping on orders over $50
+                <br />
+                • 30-day return policy
+                <br />• Secure payment processing
               </Typography>
             </Paper>
           </Box>
@@ -210,9 +229,13 @@ const ProductDetails: React.FC = () => {
         open={showSnackbar}
         autoHideDuration={3000}
         onClose={handleCloseSnackbar}
-        anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+        anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
       >
-        <Alert onClose={handleCloseSnackbar} severity="success" variant="filled">
+        <Alert
+          onClose={handleCloseSnackbar}
+          severity="success"
+          variant="filled"
+        >
           Added to cart successfully!
         </Alert>
       </Snackbar>
