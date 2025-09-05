@@ -1,90 +1,86 @@
-import { useEffect, useState } from "react";
-import { Container, CircularProgress, Grid } from "@mui/material";
-import axios from "axios";
+import React from "react";
+import { Container, Grid, Alert, Skeleton, Box } from "@mui/material";
+import { useProducts } from "../hooks/useProducts";
+import { useProductFilters } from "../hooks/useProductFilters";
 import ProductCard from "../components/ProductCard";
 import HeroSection from "../components/ui/HeroSection";
-import SortFilterControls from "../components/SortFilterControls";
+import EnhancedSearchFilters from "../components/EnhancedSearchFilters";
 
-interface Product {
-  id: number;
-  title: string;
-  price: number;
-  category: string;
-  image: string;
-}
+const Home: React.FC = () => {
+  const { data: products = [], isLoading, error, isError } = useProducts();
+  
+  const {
+    searchTerm,
+    setSearchTerm,
+    selectedCategory,
+    setSelectedCategory,
+    sortOption,
+    setSortOption,
+    priceRange,
+    setPriceRange,
+    filteredAndSortedProducts,
+    categories,
+    maxPrice,
+    resultsCount,
+  } = useProductFilters({ products });
 
-const Home = () => {
-  const [products, setProducts] = useState<Product[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [category, setCategory] = useState<string>("");
-  const [sortOption, setSortOption] = useState<string>("");
-
-  useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const response = await axios.get("https://fakestoreapi.com/products");
-        setProducts(response.data);
-      } catch (error) {
-        console.error("Error fetching products", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchProducts();
-  }, []);
-
-  // Handle sorting
-  const handleSort = (option: string) => {
-    setSortOption(option);
-    const sortedProducts = [...products];
-
-    if (option === "price-asc") {
-      sortedProducts.sort((a, b) => a.price - b.price);
-    } else if (option === "price-desc") {
-      sortedProducts.sort((a, b) => b.price - a.price);
-    } else if (option === "category") {
-      sortedProducts.sort((a, b) => a.category.localeCompare(b.category));
-    }
-
-    setProducts(sortedProducts);
+  const handleClearFilters = () => {
+    setSearchTerm('');
+    setSelectedCategory('');
+    setSortOption('name-asc');
+    setPriceRange([0, maxPrice]);
   };
 
-  // Handle category filtering
-  const handleFilter = (category: string) => {
-    setCategory(category);
-  };
-
-  const filteredProducts =
-    category === ""
-      ? products
-      : products.filter((product) => product.category === category);
+  if (isError) {
+    return (
+      <Container>
+        <Alert severity="error" sx={{ mt: 4 }}>
+          Error loading products: {error?.message || 'Something went wrong'}
+        </Alert>
+      </Container>
+    );
+  }
 
   return (
     <Container>
       <HeroSection />
 
-      {loading ? (
-        <Grid container justifyContent="center">
-          <CircularProgress />
+      <EnhancedSearchFilters
+        searchTerm={searchTerm}
+        onSearchChange={setSearchTerm}
+        selectedCategory={selectedCategory}
+        onCategoryChange={setSelectedCategory}
+        sortOption={sortOption}
+        onSortChange={setSortOption}
+        priceRange={priceRange}
+        onPriceRangeChange={setPriceRange}
+        categories={categories}
+        maxPrice={maxPrice}
+        resultsCount={resultsCount}
+        onClearFilters={handleClearFilters}
+      />
+
+      {isLoading ? (
+        <Grid container spacing={3}>
+          {Array.from({ length: 8 }).map((_, index) => (
+            <Grid item xs={12} sm={6} md={4} lg={3} key={index}>
+              <Box>
+                <Skeleton variant="rectangular" height={200} sx={{ mb: 2, borderRadius: 1 }} />
+                <Skeleton variant="text" height={30} />
+                <Skeleton variant="text" height={20} width="60%" />
+                <Skeleton variant="text" height={20} width="40%" />
+              </Box>
+            </Grid>
+          ))}
         </Grid>
       ) : (
-        <>
-          <SortFilterControls
-            sortOption={sortOption}
-            category={category}
-            handleSort={handleSort}
-            handleFilter={handleFilter}
-          />
-
-          <Grid container spacing={3}>
-            {filteredProducts.map((product) => (
-              <Grid item xs={12} sm={6} md={4} key={product.id}>
-                <ProductCard product={product} />
-              </Grid>
-            ))}
-          </Grid>
-        </>
+        <Grid container spacing={3}>
+          {filteredAndSortedProducts.map((product) => (
+            <Grid item xs={12} sm={6} md={4} lg={3} key={product.id}>
+              <ProductCard product={product} />
+            </Grid>
+          ))}
+        </Grid>
       )}
     </Container>
   );
