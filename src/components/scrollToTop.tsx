@@ -29,8 +29,8 @@ const ScrollToTop = () => {
         onClick={scrollToTop}
         sx={{
           position: "fixed",
-          bottom: 50,
-          right: 20,
+          bottom: 70,
+          right: 12,
           boxShadow: 3, // Adds elevation
         }}
       >

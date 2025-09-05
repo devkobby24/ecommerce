@@ -2,8 +2,11 @@ describe('My First Test', () => {
   it('Gets, transitions, and asserts', () => {
     cy.visit('http://localhost:5173/')
 
+    // Ensure the "Add to Cart" button exists and click it
+    cy.contains(/Add to Cart/i).click()
+
     // Ensure the "View Details" button exists and click it
-    cy.contains(/view details/i).click()
+    cy.contains(/View Details/i).click()
 
     // Verify that the URL now includes '/product/'
     cy.url().should('include', '/product/')
