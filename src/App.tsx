@@ -5,7 +5,7 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { CssBaseline, Container } from "@mui/material";
 import { CartProvider } from "./context/CartContext";
 import Home from "./pages/Home";
-import { ProductDetails } from "./pages/ProductDetails";
+import ProductDetails from "./pages/ProductDetails";
 import Cart from "./pages/Cart";
 import Header from "./components/ui/Header";
 import Footer from "./components/ui/Footer";

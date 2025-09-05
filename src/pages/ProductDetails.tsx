@@ -27,7 +27,7 @@ import {
 import { useProduct } from "../hooks/useProducts";
 import { useCart } from "../context/CartContext";
 
-export const ProductDetails: React.FC = () => {
+const ProductDetails: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const { addToCart } = useCart();
@@ -220,3 +220,4 @@ export const ProductDetails: React.FC = () => {
   );
 };
 
+export default ProductDetails;
